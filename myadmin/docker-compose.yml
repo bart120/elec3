@@ -20,6 +20,7 @@ services:
       - backend
     volumes:
       - D:\formation\docker\ynov\volumes\data:/var/lib/mysql
+    restart: always
   phpmyadmin:
     container_name: admin-cont
     image: phpmyadmin:latest
@@ -33,7 +34,6 @@ services:
     depends_on:
       - database
   wordpress:
-    container_name: wp-cont
     image: wordpress:latest
     ports:
       - 80:80
@@ -47,3 +47,7 @@ services:
       - frontend
     depends_on:
       - database
+    #deploy:
+    #  mode: replicated
+    #  replicas: 3
+    #  endpoint_mode: vip
